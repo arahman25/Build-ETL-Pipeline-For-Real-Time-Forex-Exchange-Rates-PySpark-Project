@@ -5,8 +5,7 @@
 ---
 
 ### 💱 **Currency Conversion Example**
-- **1 RS = 300.0 DONG**
-- **USD → EUR → 1.17 USD**
+- **USD → EGP → 48.10 EGP**
 
 ---
 
@@ -158,7 +157,7 @@ Before setting up your S3 bucket to store raw Forex data, you need to log in to 
 
 #### 🔗 **Example API Request URL**
 ```plaintext
-https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=EUR&to_currency=USD&apikey=your_api_key
+https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=EGP&apikey=your_api_key
 ```
 > Replace `your_api_key` with your actual Alpha Vantage key.
 
@@ -176,8 +175,8 @@ https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=
 | 🏷️ **Parameter**     | 🧪 **Value Example**           | 📘 **Description**                                      |
 |----------------------|-------------------------------|---------------------------------------------------------|
 | `function`           | `CURRENCY_EXCHANGE_RATE`      | Specifies you want real-time forex exchange rates       |
-| `from_currency`      | `EUR`                         | Base currency                                            |
-| `to_currency`        | `USD`                         | Target currency                                          |
+| `from_currency`      | `USD`                         | Base currency                                            |
+| `to_currency`        | `EGP`                         | Target currency                                          |
 | `apikey`             | `5KCJ6AN2GNFCAGN`             | Your unique Alpha Vantage API key                       |
 
 ---
@@ -189,12 +188,12 @@ When you call the **CURRENCY_EXCHANGE_RATE** endpoint, the API returns a JSON ob
 ```json
 {
   "Realtime Currency Exchange Rate": {
-    "1. From_Currency Code": "EUR",
-    "2. From_Currency Name": "Euro",
-    "3. To_Currency Code": "USD",
-    "4. To_Currency Name": "United States Dollar",
-    "5. Exchange Rate": "1.0856",
-    "6. Last Refreshed": "2025-02-07 16:00:00",
+    "1. From_Currency Code": "USD",
+    "2. From_Currency Name": "United States Dollar",
+    "3. To_Currency Code": "EGP",
+    "4. To_Currency Name": "Egyptian Pound",
+    "5. Exchange Rate": "48.1056",
+    "6. Last Refreshed": "2025-09-24 16:00:00",
     "7. Time Zone": "UTC"
   }
 }
@@ -248,8 +247,8 @@ For Alpha Vantage’s Forex API, the endpoint is:
 | 🔹 **Parameter**     | 📌 **Purpose**                                      |
 |----------------------|-----------------------------------------------------|
 | `function`           | Defines the type of data you want (e.g., exchange rate) |
-| `from_currency`      | The base currency (e.g., EUR)                       |
-| `to_currency`        | The target currency (e.g., USD)                     |
+| `from_currency`      | The base currency (e.g., USD)                       |
+| `to_currency`        | The target currency (e.g., EGP)                     |
 | `apikey`             | Your unique Alpha Vantage API key                   |
 
 ---
