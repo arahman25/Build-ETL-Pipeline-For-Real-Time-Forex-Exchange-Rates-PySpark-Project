@@ -82,3 +82,103 @@
 
 ---
 
+### 🧾 **Indigestion Layer – Completed Setup**
+
+| ✅ **Task**                                                                                   |
+|----------------------------------------------------------------------------------------------|
+| Created an **S3 Bucket** to store raw Forex data                                             |
+| Created an **IAM User** and configured **AWS CLI**                                           |
+| Built a **Python script** to fetch Forex data and upload to S3                              |
+| Created an **AWS Lambda Function** to automate ingestion                                     |
+| Resolved issues: missing libraries, permissions, execution errors                            |
+| Successfully executed Lambda manually and verified file upload in S3                         |
+| Automated Lambda using **AWS EventBridge Scheduler**                                         |
+| Verified scheduled execution every **5 minutes** and confirmed correct data upload           |
+
+---
+
+### 🔄 **Indigestion Layer Purpose**
+- **Fetch real-time Forex exchange rates** from an external API.
+- **Store raw data** in AWS S3 for downstream processing.
+
+---
+
+### 🔐 **LOGIN TO AWS – Initial Setup Guide**  
+
+#### 🧭 **Step 1.1: Where to Start?**
+Before setting up your S3 bucket to store raw Forex data, you need to log in to AWS.
+
+---
+
+### 🖥️ **How to Log In to AWS**
+1. Go to the AWS Console: [https://aws.amazon.com/console](https://aws.amazon.com/console)  
+2. Click **Sign In**  
+3. Enter your AWS account credentials  
+   - Or create a new account if you don’t have one  
+4. After logging in, you’ll be redirected to the **AWS Management Console**
+
+---
+
+### 🌐 **Forex API Comparison**
+
+| 🔹 **API Name**     | 🆓 **Free Plan** | ⏱️ **Update Frequency** | 📦 **Data Provided**                              |
+|---------------------|------------------|--------------------------|---------------------------------------------------|
+| **Alpha Vantage**   | Yes              | Every 1 min              | Exchange rates, historical data                   |
+| **Currencylayer**   | Yes              | Every 1 hr               | Exchange rates, currency conversions              |
+| **ForexDataAPI**    | No               | Real-time                | Forex pairs, historical data                      |
+| **X-Rates**         | Yes              | Every 1 hr               | Exchange rates                                    |
+
+---
+
+### ✅ **Recommended Option**
+- **Alpha Vantage** is highlighted as the preferred choice:
+  - Free and easy to use
+  - Provides an **API Key** upon signup
+  - Reminder: **Keep your API key safe**
+
+---
+
+### 🔑 **Step 2.1 – Generate & Store Your API Key**
+
+- **Purpose**: To authenticate requests when fetching Forex data from Alpha Vantage.
+- **Instructions**:
+  - Visit: [https://www.alphavantage.co/support/#api-key](https://www.alphavantage.co/support/#api-key)
+  - Sign up or log in to generate your personal **API key**
+  - Store the key securely for use in your Python scripts or Lambda functions
+
+---
+
+### 🧪 **Sample API Key Format**
+- Example shown: `5KJ6CAN2GNFGA9N**RPGMOWD5SOTTYSCI`  
+  *(Note: Only partial key is visible for security)*
+
+---
+
+### 🌐 **Step 2.2 – Constructing an API Request (Alpha Vantage)**
+
+#### 🔗 **Example API Request URL**
+```plaintext
+https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=EUR&to_currency=USD&apikey=your_api_key
+```
+> Replace `your_api_key` with your actual Alpha Vantage key.
+
+---
+
+### 🧩 **API Request Breakdown**
+
+- **API Endpoint**:  
+  `https://www.alphavantage.co/query?`  
+  *(This is the base URL used to make requests)*
+
+- **API Parameters**:  
+  These customize the request and define what data you want.
+
+| 🏷️ **Parameter**     | 🧪 **Value Example**           | 📘 **Description**                                      |
+|----------------------|-------------------------------|---------------------------------------------------------|
+| `function`           | `CURRENCY_EXCHANGE_RATE`      | Specifies you want real-time forex exchange rates       |
+| `from_currency`      | `EUR`                         | Base currency                                            |
+| `to_currency`        | `USD`                         | Target currency                                          |
+| `apikey`             | `5KCJ6AN2GNFCAGN`             | Your unique Alpha Vantage API key                       |
+
+---
+
