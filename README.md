@@ -259,3 +259,163 @@ For Alpha Vantage’s Forex API, the endpoint is:
 
 ---
 
+### 📦 Step 3: Create an S3 Bucket to Store Raw Data
+
+Amazon S3 will serve as the storage layer for raw Forex data before any processing begins.
+
+#### 🔧 How to Create the Bucket
+1. **Navigate to AWS Console → S3**  
+   [AWS S3 Console](https://s3.console.aws.amazon.com/s3/)
+2. **Click**: `Create Bucket`
+3. **Fill in the following details**:
+   - **Bucket Name**: `forex-data-bucket`
+   - **Region**: Choose one close to your users (e.g., `us-east-1`)
+4. **Enable Versioning** *(Optional)*  
+   - Useful for tracking historical changes to stored data.
+5. **Click**: `Create Bucket`
+
+#### 📁 Folder Structure in S3
+Organize raw data using a date-based hierarchy:
+
+```
+s3://forex-data-bucket/raw/yyyy/MM/dd/
+```
+
+**Example for February 7, 2025**:
+```
+s3://forex-data-bucket/raw/2025/02/07/
+```
+
+---
+
+### 🗂️ Step 1: Store Raw API Data in AWS S3
+
+We begin by creating an S3 bucket to store raw Forex data before any processing.
+
+#### 🔧 Setup Instructions
+1. **Go to AWS Console**
+2. **Navigate to S3 Service**  
+   [AWS S3 Console](https://s3.console.aws.amazon.com/s3)
+3. **Click**: `Create Bucket`
+4. **Choose a Unique Name**  
+   - Example: `forex-data-bucket-v2`
+5. **Select Region**  
+   - Choose the region closest to you  
+   - Example: `Asia Pacific (Mumbai)` → `ap-south-1`
+6. **Keep Default Settings**  
+   - Optionally, enable **Versioning** to track historical changes
+
+#### ✅ Bucket Verification
+Once created, confirm the bucket exists (e.g., `forex-data-bucket-v1`) and is ready to store raw data.
+
+---
+
+Here’s a structured summary of the snapshot titled **“What Are AWS Glue Crawlers Used For?”**, formatted for documentation or workflow clarity:
+
+---
+
+### 🧭 What Are AWS Glue Crawlers Used For?
+
+AWS Glue Crawlers automatically scan and catalog data from various sources into the **AWS Glue Data Catalog**, enabling seamless data discovery and querying.
+
+#### 🔍 Key Uses of AWS Glue Crawlers
+1. **Automated Schema Discovery**  
+   - Crawlers analyze raw data and infer column names, data types, and structure.
+2. **Metadata Extraction**  
+   - Extract metadata from sources like S3, Redshift, RDS, DynamoDB, and store it in the Glue Data Catalog.
+3. **Incremental Crawls**  
+   - Detect and update schema changes incrementally without manual intervention.
+4. **Query Enablement for Athena & Redshift Spectrum**  
+   - Prepare data for querying without manually defining schemas.
+
+#### 📁 Example Use Case
+If you have **CSV files in S3**, a Glue Crawler can scan them and automatically register the schema in the Glue Data Catalog—no manual table definition required.
+
+---
+
+### 🐍 Install Python Dependencies (Local Setup)
+
+**Option 1: Install Python Locally**  
+_Recommended for learning and debugging._
+
+#### 🔧 Step 1: Install Python
+1. **Download Python** from the official site:  
+   [python.org/downloads](https://www.python.org/downloads/)
+2. **Mac Users**:
+   - Press `Command + Space` and search for **Terminal**
+   - Open Terminal and run:
+     ```
+     python3 --version
+     ```
+   - If installed correctly, it should return something like:
+     ```
+     Python 3.x.x
+     ```
+
+---
+
+#### ✅ Step 2: Install Required Python Libraries
+
+Install the necessary libraries to fetch Forex data and interact with AWS services:
+
+```bash
+python3 -m pip install requests boto3
+```
+
+Alternatively, install them individually:
+
+```bash
+pip3 install requests     # For making API calls
+pip3 install boto3        # For interacting with AWS (e.g., S3)
+```
+
+- **`requests`** → Used to fetch Forex data via API calls  
+- **`boto3`** → AWS SDK for Python, used to upload data to S3 and other services
+
+---
+
+#### 📝 Step 3: Create a Python Script
+
+Open a text editor and create a new file named:
+
+```
+forex_fetch.py
+```
+
+This script will contain the logic to retrieve Forex data and push it to AWS.
+
+---
+
+### 🧾 Step 4: Write the Python Script
+
+This script fetches real-time currency exchange data using the **Alpha Vantage API**.
+
+#### 🐍 Python Code Overview
+
+```python
+import requests
+
+# API Configuration
+API_KEY = "API_KEY"  # Replace with your actual API key
+BASE_URL = "https://www.alphavantage.co/query"
+CURRENCY_FROM = "USD"
+CURRENCY_TO = "EGP"
+
+# Define API Parameters
+params = {
+    "function": "CURRENCY_EXCHANGE_RATE",
+    "from_currency": CURRENCY_FROM,
+    "to_currency": CURRENCY_TO,
+    "apikey": API_KEY
+}
+
+# Fetch Data
+response = requests.get(BASE_URL, params=params)
+data = response.json()
+
+# Print the Response
+print(data)
+```
+
+---
+
