@@ -288,32 +288,6 @@ s3://forex-data-bucket/raw/2025/02/07/
 
 ---
 
-### 🗂️ Step 1: Store Raw API Data in AWS S3
-
-We begin by creating an S3 bucket to store raw Forex data before any processing.
-
-#### 🔧 Setup Instructions
-1. **Go to AWS Console**
-2. **Navigate to S3 Service**  
-   [AWS S3 Console](https://s3.console.aws.amazon.com/s3)
-3. **Click**: `Create Bucket`
-4. **Choose a Unique Name**  
-   - Example: `forex-data-bucket-v2`
-5. **Select Region**  
-   - Choose the region closest to you  
-   - Example: `Asia Pacific (Mumbai)` → `ap-south-1`
-6. **Keep Default Settings**  
-   - Optionally, enable **Versioning** to track historical changes
-
-#### ✅ Bucket Verification
-Once created, confirm the bucket exists (e.g., `forex-data-bucket-v1`) and is ready to store raw data.
-
----
-
-Here’s a structured summary of the snapshot titled **“What Are AWS Glue Crawlers Used For?”**, formatted for documentation or workflow clarity:
-
----
-
 ### 🧭 What Are AWS Glue Crawlers Used For?
 
 AWS Glue Crawlers automatically scan and catalog data from various sources into the **AWS Glue Data Catalog**, enabling seamless data discovery and querying.
